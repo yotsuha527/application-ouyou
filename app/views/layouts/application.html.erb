@@ -22,13 +22,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              <% if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(about_path) %>
-              <li>
-                <%= link_to root_path, class:"nav-link text-light" do %>
-                   <i class="fas fa-home"></i> Home
-                <% end %>
-              </li>
-              <% else %>
+              <% if current_user.present? %>
               <li>
                 <% if @user.id == nil %>
                 <% @user.id = 2 %>
@@ -37,43 +31,49 @@
                   <i class="fas fa-home"></i> Home
                 <% end %>
               </li>
-              <% end %>
-              <% if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(about_path) %>
+              <% else %>
               <li>
-                <%= link_to about_path, class:"nav-link text-light" do %>
-                  <i class="fas fa-link"></i> About
+                <%= link_to root_path, class:"nav-link text-light" do %>
+                   <i class="fas fa-home"></i> Home
                 <% end %>
               </li>
-              <% else %>
+              <% end %>
+              <% if current_user.present? %>
               <li>
                 <%= link_to  users_path, class: "nav-link text-light" do %>
                   <i class="fas fa-users"></i> Users
                 <% end %>
               </li>
-              <% end %>
-              <% if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(about_path) %>
+              <% else %>
               <li>
-                <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
-                  <i class="fas fa-user-plus"></i> Sign up
+                <%= link_to about_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-link"></i> About
                 <% end %>
               </li>
-              <% else %>
+              <% end %>
+              <% if current_user.present? %>
               <li>
                 <%= link_to books_path, class:"nav-link text-light" do %>
                   <i class="fas fa-book-open"></i> Books
                 <% end %>
               </li>
-              <% end %>
-              <% if current_page?(root_path) || current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(about_path) %>
+              <% else %>
               <li>
-                <%= link_to new_user_session_path, class:"nav-link text-light" do %>
-                  <i class="fas fa-sign-in-alt"></i> Log in
+                <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-user-plus"></i> sign up
+                <% end %>
+              </li>
+              <% end %>
+              <% if current_user.present? %>
+              <li>
+                <%= link_to destroy_user_session_path, class:"nav-link text-light", rel:"nofollow", method: :delete do %>
+                  <i class="fas fa-sign-out-alt"></i> logout
                 <% end %>
               </li>
               <% else %>
               <li>
-                <%= link_to destroy_user_session_path, class:"nav-link text-light", rel:"nofollow", method: :delete do %>
-                  <i class="fas fa-sign-out-alt"></i> Log out
+                <%= link_to new_user_session_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-sign-in-alt"></i> login
                 <% end %>
               </li>
               <% end %>

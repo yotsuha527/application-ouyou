@@ -28,10 +28,11 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @book_d = Book.find(params[:id])
+    @book_comment = BookComment.new
     if @book_d.user_id == current_user.id
       @user = current_user
     else
-      @user = User.find(params[:id])
+      @user = @book_d.user
     end
   end
 
