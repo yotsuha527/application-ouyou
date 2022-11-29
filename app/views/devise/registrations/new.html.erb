@@ -1,0 +1,35 @@
+<%= form_with model: @user, url: user_registration_path do |f| %>
+<%= render "devise/shared/error_messages", resource: @user %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+      <h2>Sign up</h2>
+      <div class="field">
+        <div class="field">
+          <%= f.label :name %><br/>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        </div>
+        <div class="field">
+          <%= f.label :email %><br/>
+          <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="field">
+          <label for="user_password">Password</label>
+          <em>(6 characters minimum)</em>
+          <br>
+          <input autocomplete="off" class="password" type="password" name="user[password]" id="user_password">
+        </div>
+        <div class="field">
+          <label for="user_password_confirmation">Password confirmation</label><br>
+          <input autocomplete="off" class="password_confirm" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+        </div>
+        <div class="actions">
+          <input type="submit" name="commit" value="Sign up" class="btn btn-sm btn-success" data-disable-with="Sign up">
+        </div>
+        <%= render "devise/shared/links" %><br>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

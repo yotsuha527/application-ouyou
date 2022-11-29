@@ -1,0 +1,32 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> errors occurred
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+      <%= form_with model: @book do |f| %>
+      <div class="form-group">
+        <label for="book_title">Title</label><br>
+        <input class="form-control book_title" type="text" value="<%= @book.title %>" name="book[title]" id="book_title">
+      </div>
+      <div class="form-group">
+        <label for="book_opinion">Opinion</label><br>
+        <textarea class="form-control book_body" name="book[body]" id="book_body"><%= @book.body %></textarea>
+      </div>
+      <div class="form-group">
+        <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
+      </div>
+      <% end %>
+      <%= link_to "Show", book_path(@book.id) %>
+      |
+      <%= link_to "Back", "/books" %>
+    </div>
+  </div>
+</div>
